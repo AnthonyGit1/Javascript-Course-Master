@@ -173,9 +173,11 @@ const formatter = {
 
 formatter.append("World"); // Result: Hello World
 
-Object.prototype.toLowerString = function (str) {
-    console.log(str.toLowerCase());
-};
+Object.setPrototypeOf(formatter, {
+    toLowerString(str) {
+        console.log(str.toLowerCase());
+    }
+});
 
 formatter.toLowerString("I’m Lucas"); // Result: i’m lucas
     </code></pre>

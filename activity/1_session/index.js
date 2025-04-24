@@ -85,8 +85,10 @@ argumento e imprima esa misma cadena en minúsculas.
 
     formatter.toLowerString(“I’m Lucas”) // Result: i’m lucas
 */
-Object.prototype.toLowerString = function (str) {
-    console.log(str.toLowerCase());
-}
+Object.setPrototypeOf(formatter, {
+    toLowerString(str) {
+        console.log(str.toLowerCase());
+    }
+});
 
 formatter.toLowerString("I’m Lucas");
