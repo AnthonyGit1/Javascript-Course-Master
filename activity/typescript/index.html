@@ -59,6 +59,113 @@ console.log(newStrArray); //</span><span class="hljs-function"> --&gt;</span> [<
 console.log(newMixedArray); //</span><span class="hljs-function"> --&gt;</span> [<span class="hljs-string">'I'</span>, <span class="hljs-string">'have'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'tasks'</span>];
 </code></pre>
 
+                <hr class="code-separator">
+
+                <!-- Solución General -->
+                <h2 id="solucion-general">Solución General</h2>
+                <div class="resolution-section">
+                    <h3>Ejercicio 1</h3>
+                    <pre><code class="language-javascript">
+interface Person {
+    name: string;
+    age: number;
+    profession: string;
+}
+
+const getPersonProperties = (person: Person) : (string | number)[] => {
+    return [person.name, person.age, person.profession];
+}
+
+const person: Person = {
+    name: "Anthony Luis",
+    age: 22,
+    profession: "Ingeniero de Sistemas e Informática"
+};
+
+console.log(getPersonProperties(person));
+                    </code></pre>
+
+                    <h3>Ejercicio 2</h3>
+                    <pre><code class="language-javascript">
+const sumOrConcatenate = (a: number | string, b: number | string): number | string => {
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    } else if (typeof a === 'string' && typeof b === 'string') {
+        return a + '-' + b;
+    } else {
+        return a + ':' + b;
+    }
+}
+
+console.log(sumOrConcatenate(4, 3)); // --> 7
+console.log(sumOrConcatenate(4, "hello")); // --> 4:hello 
+console.log(sumOrConcatenate("hello", "world")); // --> hello-world
+                    </code></pre>
+
+                    <h3>Ejercicio 3</h3>
+                    <pre><code class="language-javascript">
+interface Car {
+    tires: number;
+    turnOnEngine: () => void;
+    pressPedal: () => void;
+}
+
+interface Motorcycle {
+    tires: number;
+    turnOnEngine: () => void;
+    openThrottle: () => void;
+}
+
+const isCar = (vehicle: Car | Motorcycle): vehicle is Car => {
+    return (vehicle as Car).pressPedal !== undefined;
+}
+
+const startVehicle = (vehicle: Car | Motorcycle): void => {
+    vehicle.turnOnEngine();
+    if (isCar(vehicle)) {
+        vehicle.pressPedal();
+    } else {
+        vehicle.openThrottle();
+    }
+}
+
+const myCar: Car = {
+    tires: 4,
+    turnOnEngine: () => console.log("Car engine started"),
+    pressPedal: () => console.log("Car pedal pressed")
+};
+
+const myMotorcycle: Motorcycle = {
+    tires: 2,
+    turnOnEngine: () => console.log("Motorcycle engine started"),
+    openThrottle: () => console.log("Motorcycle throttle opened")
+};
+
+startVehicle(myCar); // --> Car engine started, Car pedal pressed
+startVehicle(myMotorcycle); // --> Motorcycle engine started, Motorcycle throttle opened
+                    </code></pre>
+
+                    <h3>Ejercicio 4</h3>
+                    <pre><code class="language-javascript">
+const removeFirstEntry = <T>(arr: T[]): T[] => {
+    return arr.slice(1);
+}
+
+const strArray: string[] = ['Hello', 'World', 'Im', 'a', 'Full', 'Stack', 'Developer'];
+const numArray: number[] = [1, 2, 3, 4, 5, 6, 7];
+const mixedArray: Array<number|string> = ['Hello', 'I', 'have', 3, 'tasks'];
+const unsupportedArray = [{name: 'Lucas', surname: 'Fernandez'}, 'Hello', 22];
+
+const newStrArray = removeFirstEntry(strArray);
+const newNumArray = removeFirstEntry(numArray);
+const newMixedArray = removeFirstEntry(mixedArray);
+// const newUnsupportedArray = removeFirstEntry(unsupportedArray); // --> will fail
+
+console.log(newStrArray); // --> ['World', 'Im', 'a', 'Full', 'Stack', 'Developer'];
+console.log(newNumArray); // --> [2, 3, 4, 5, 6, 7];
+console.log(newMixedArray); // --> ['I', 'have', 3, 'tasks'];
+                    </code></pre>
+                </div>
         </div>
     </div>
     <script src="../../prism.js"></script>
