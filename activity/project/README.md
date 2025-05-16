@@ -3,7 +3,7 @@
 ## Ejercicio Final
 
 En [este repositorio](https://github.com/lucferbux/TypescriptWeatherExample) os dejo un ejemplo de proyecto TypeScript con Webpack, tal y como React usa dentro de su Core.
-La rama main contiene el ejercicio resuelto, para que podáis ver su lógica.
+La rama final contiene el ejercicio resuelto, para que podáis ver su lógica.
 En la rama main tenéis los ficheros incompletos, para implementar vuestra versión si queréis resolverlo por vuestra cuenta.
 Los pasos a seguir serían los siguientes:
 
